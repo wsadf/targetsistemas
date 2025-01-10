@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inverter String</title>
+</head>
+<body>
+
+  <h1>Inverter os Caracteres de uma String</h1>
+  <p>Original String: <span id="original">Olá, mundo!</span></p>
+  <p>String invertida: <span id="reversed"></span></p>
+
+  <script>
+    let originalString = "Olá, mundo!";
+
+    let reversedString = '';
+    for (let i = originalString.length - 1; i >= 0; i--) {
+      reversedString += originalString[i];
+    }
+
+    document.getElementById('reversed').textContent = reversedString;
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculos de Faturamento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+        .result p {
+            font-size: 18px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Faturamento Mensal</h1>
+
+    <div class="result">
+        <p><strong>Menor valor de faturamento:</strong> <span id="menor-valor"></span></p>
+        <p><strong>Maior valor de faturamento:</strong> <span id="maior-valor"></span></p>
+        <p><strong>Número de dias com faturamento superior à média mensal:</strong> <span id="dias-acima-media"></span></p>
+    </div>
+
+    <script>
+        const faturamento = [
+            { "dia": 1, "valor": 22174.1664 },
+            { "dia": 2, "valor": 24537.6698 },
+            { "dia": 3, "valor": 26139.6134 },
+            { "dia": 4, "valor": 0.0 },
+            { "dia": 5, "valor": 0.0 },
+            { "dia": 6, "valor": 26742.6612 },
+            { "dia": 7, "valor": 0.0 },
+            { "dia": 8, "valor": 42889.2258 },
+            { "dia": 9, "valor": 46251.174 },
+            { "dia": 10, "valor": 11191.4722 },
+            { "dia": 11, "valor": 0.0 },
+            { "dia": 12, "valor": 0.0 },
+            { "dia": 13, "valor": 3847.4823 },
+            { "dia": 14, "valor": 373.7838 },
+            { "dia": 15, "valor": 2659.7563 },
+            { "dia": 16, "valor": 48924.2448 },
+            { "dia": 17, "valor": 18419.2614 },
+            { "dia": 18, "valor": 0.0 },
+            { "dia": 19, "valor": 0.0 },
+            { "dia": 20, "valor": 35240.1826 },
+            { "dia": 21, "valor": 43829.1667 },
+            { "dia": 22, "valor": 18235.6852 },
+            { "dia": 23, "valor": 4355.0662 },
+            { "dia": 24, "valor": 13327.1025 },
+            { "dia": 25, "valor": 0.0 },
+            { "dia": 26, "valor": 0.0 },
+            { "dia": 27, "valor": 25681.8318 },
+            { "dia": 28, "valor": 1718.1221 },
+            { "dia": 29, "valor": 13220.495 },
+            { "dia": 30, "valor": 8414.61 }
+        ];
+
+        const menorValor = Math.min(...faturamento.map(f => f.valor));
+
+        const maiorValor = Math.max(...faturamento.map(f => f.valor));
+
+        const mediaMensal = faturamento.filter(f => f.valor > 0).reduce((acc, f) => acc + f.valor, 0) / faturamento.filter(f => f.valor > 0).length;
+
+        const diasAcimaDaMedia = faturamento.filter(f => f.valor > mediaMensal).length;
+
+        document.getElementById('menor-valor').textContent = `R$ ${menorValor.toFixed(2)}`;
+        document.getElementById('maior-valor').textContent = `R$ ${maiorValor.toFixed(2)}`;
+        document.getElementById('dias-acima-media').textContent = diasAcimaDaMedia;
+    </script>
+</body>
+</html>
